@@ -19,26 +19,24 @@ public class Main {
         CommandLineParser parser = new DefaultParser();
         try {
             CommandLine cmd = parser.parse(options, args);
+            // Obtain the path of the supposed text file from the i flag
             String path = cmd.getOptionValue("i");
-            if (path != null) {
-                logger.info("**** Reading the maze from file " + path);
-                BufferedReader reader = new BufferedReader(new FileReader(path));
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    for (int idx = 0; idx < line.length(); idx++) {
-                        if (line.charAt(idx) == '#') {
-                            System.out.print("WALL ");
-                        } else if (line.charAt(idx) == ' ') {
-                            System.out.print("PASS ");
-                        }
+            logger.info("**** Reading the maze from file " + path);
+            // Find the file with the inputted filepath, return error if filepath no legit
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                for (int idx = 0; idx < line.length(); idx++) {
+                    if (line.charAt(idx) == '#') {
+                        System.out.print("WALL ");
+                    } else if (line.charAt(idx) == ' ') {
+                        System.out.print("PASS ");
                     }
-                    System.out.print(System.lineSeparator());
                 }
-            } else {
-                logger.info("Missing -i flag");
+                System.out.print(System.lineSeparator());
             }
         } catch(Exception e) {
-            System.err.println("/!\\ An error has occurred /!\\");
+            logger.error("/!\\ An error has occurred /!\\");
         }
         logger.info("**** Computing path");
         logger.info("PATH NOT COMPUTED");
