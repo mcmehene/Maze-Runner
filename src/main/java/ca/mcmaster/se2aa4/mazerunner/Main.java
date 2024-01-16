@@ -11,14 +11,14 @@ public class Main {
 
     public static void main(String[] args) {
         logger.info("** Starting Maze Runner");
-        /*
+
         // Run configuration of flags
         Configuration config = Configuration.load(args);
         // Convert the file into a readable maze for the code
-        MazeToGrid mazeToGrid = new MazeToGrid(config.path());
+        MazeToGrid mazeToGrid = new MazeToGrid();
         // Put the grid in a variable for reading to solver classes
-        int[][] officialMaze = MazeToGrid.maze();
-        */
+        int[][] grid = MazeToGrid.maze(config.path());
+
         Options options = new Options();
         options.addOption("i",true, "Inputting the Maze Using i Flag");
         CommandLineParser parser = new DefaultParser();
