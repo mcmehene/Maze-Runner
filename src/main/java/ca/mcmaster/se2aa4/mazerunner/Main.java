@@ -1,12 +1,9 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import org.apache.commons.cli.*;
-import org.apache.commons.cli.Options;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.*;
 
 public class Main {
 
@@ -14,6 +11,14 @@ public class Main {
 
     public static void main(String[] args) {
         logger.info("** Starting Maze Runner");
+        /*
+        // Run configuration of flags
+        Configuration config = Configuration.load(args);
+        // Convert the file into a readable maze for the code
+        MazeToGrid mazeToGrid = new MazeToGrid(config.path());
+        // Put the grid in a variable for reading to solver classes
+        int[][] officialMaze = MazeToGrid.maze();
+        */
         Options options = new Options();
         options.addOption("i",true, "Inputting the Maze Using i Flag");
         CommandLineParser parser = new DefaultParser();
