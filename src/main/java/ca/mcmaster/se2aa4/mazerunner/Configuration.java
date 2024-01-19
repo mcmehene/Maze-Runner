@@ -17,6 +17,7 @@ public class Configuration {
         try {
             CommandLine cmd = parser.parse(options, arguments);
             filepath = cmd.getOptionValue("i");
+            logger.info("The filepath is: " + filepath);
         } catch (Exception pe) {
             logger.error("Error: " + pe);
             logger.error("Exiting Program.");

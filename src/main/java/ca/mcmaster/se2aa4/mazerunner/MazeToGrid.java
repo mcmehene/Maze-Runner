@@ -1,5 +1,6 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
+import com.sun.source.tree.BreakTree;
 import org.apache.logging.log4j.*;
 
 import java.io.BufferedReader;
@@ -7,34 +8,57 @@ import java.io.FileReader;
 
 public class MazeToGrid {
     private static final Logger logger = LogManager.getLogger();
-    public static int[][] maze;
-    public int column;
-    public int row;
-    public static int[][] maze(String path) {
-        // Reads file and puts the walls and spaces as 1 and 0 in grid
-        // Then save the maze to the maze variable for access outside class
+    private static final String path = Configuration.iFlag();
+    private static int rows;
+    private static int columns;
+
+    // Dimensions computes the size of the maze, that is how wide and how long it is.
+    private static void dimensions() {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(path));
             String line;
-            int rowIndex = -1;
+            boolean first = false;
             while ((line = reader.readLine()) != null) {
-                rowIndex++;
-                for (int idx = 0; idx < line.length(); idx++) {
+                rows++;
+                if (!first) {
+                    columns = line.length();
+                    first = true;
+                }
+            }
+        } catch (Exception efnf1) {
+            logger.error("rowDimension File Error: " + efnf1);
+        }
+    }
+
+    // Maze Array Converts the Maze into
+    public static String[][] mazeArray() {
+        // Reads file and puts the walls and spaces as 1 and 0 in grid
+        // Then save the maze to the maze variable for access outside class
+        dimensions();
+        String[][] maze = new String[rows][columns];
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+            String line;
+            int rowIndex = 0;
+            while ((line = reader.readLine()) != null) {
+                for (int idx = 0; idx < columns; idx++) {
                     if (line.charAt(idx) == '#') {
-                        maze[rowIndex][idx] = 1;
-                        System.out.println(1);
+                        maze[rowIndex][idx] = "#";
+                        System.out.print(maze[rowIndex][idx] + " ");
                     } else if (line.charAt(idx) == ' ') {
-                        maze[rowIndex][idx] = 0;
-                        System.out.println(1);
+                        maze[rowIndex][idx] = " ";
+                        System.out.print(maze[rowIndex][idx] + " ");
                     }
                 }
                 System.out.print(System.lineSeparator());
+                rowIndex++;
             }
-        } catch (Exception efnf) {
-            logger.error("Error: " + efnf);
+        } catch (Exception efnf2) {
+            logger.error("Error: " + efnf2);
             logger.error("Exiting Program.");
             System.exit(1);
         }
-        return new int[][]{{0,1}};
+        return maze;
     }
+
 }

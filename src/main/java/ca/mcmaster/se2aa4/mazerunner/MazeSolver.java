@@ -1,12 +1,15 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
+import org.apache.logging.log4j.*;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+
 public class MazeSolver {
 
-
-    public static String finalPath() {
-        // Returns the path to be checked/printed depending on condition of program
-        return "Walking Skeleton";
-    }
+    private static final Logger logger = LogManager.getLogger();
+    private static final String path = Configuration.iFlag();
+    public static String[][] maze = MazeToGrid.mazeArray();
 
     public static int findStartCoordinates() {
         // Determine where we begin the search
@@ -23,4 +26,8 @@ public class MazeSolver {
         return "Path";
     }
 
+    public static String finalPath() {
+        // Returns the path to be checked/printed depending on condition of program
+        return "Walking Skeleton";
+    }
 }

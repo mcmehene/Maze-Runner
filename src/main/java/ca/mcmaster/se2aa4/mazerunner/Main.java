@@ -13,17 +13,12 @@ public class Main {
         logger.info("** Starting Maze Runner");
         // Run configuration of flags
         Configuration.arguments = args;
-        //String config = Configuration.iFlag(args);
-        // Convert the file into a readable maze for the code
-        MazeToGrid mazeToGrid = new MazeToGrid();
-
+        String[][] grid = MazeToGrid.mazeArray();
         // ################################### NOTE ########################################
         // Make Maze Solver the class to be objectified. Main does not need to know how or
         // enact the maze creation and delegate it to mazeSolver. So fix.
         // ################################### NOTE #########################################
 
-        // Put the grid in a variable for reading to solver classes
-        int[][] grid = MazeToGrid.maze(Configuration.iFlag());
         logger.info("**** Computing path");
         logger.info("PATH NOT COMPUTED");
         logger.info("** End of MazeRunner");
