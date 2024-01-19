@@ -9,8 +9,8 @@ import java.io.FileReader;
 public class MazeToGrid {
     private static final Logger logger = LogManager.getLogger();
     private static final String path = Configuration.iFlag();
-    private static int rows;
-    private static int columns;
+    public static int rows;
+    public static int columns;
 
     // Dimensions computes the size of the maze, that is how wide and how long it is.
     private static void dimensions() {
@@ -30,10 +30,8 @@ public class MazeToGrid {
         }
     }
 
-    // Maze Array Converts the Maze into
+    // Maze Array Converts the Maze into a Matrix for Program.
     public static String[][] mazeArray() {
-        // Reads file and puts the walls and spaces as 1 and 0 in grid
-        // Then save the maze to the maze variable for access outside class
         dimensions();
         String[][] maze = new String[rows][columns];
         try {
@@ -44,13 +42,13 @@ public class MazeToGrid {
                 for (int idx = 0; idx < columns; idx++) {
                     if (line.charAt(idx) == '#') {
                         maze[rowIndex][idx] = "#";
-                        System.out.print(maze[rowIndex][idx] + " ");
+                        //System.out.print(maze[rowIndex][idx] + " ");
                     } else if (line.charAt(idx) == ' ') {
                         maze[rowIndex][idx] = " ";
-                        System.out.print(maze[rowIndex][idx] + " ");
+                        //System.out.print(maze[rowIndex][idx] + " ");
                     }
                 }
-                System.out.print(System.lineSeparator());
+                //System.out.print(System.lineSeparator());
                 rowIndex++;
             }
         } catch (Exception efnf2) {
@@ -60,5 +58,4 @@ public class MazeToGrid {
         }
         return maze;
     }
-
 }

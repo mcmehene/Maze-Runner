@@ -6,13 +6,14 @@ import org.apache.logging.log4j.*;
 public class Configuration {
     public static String[] arguments;
     private static final Logger logger = LogManager.getLogger();
-    private static String filepath;
+    public static String filepath;
     public static String iFlag() {
         // Read i flag and return its path if valid
         // Read p and return status of p to determine if we should evaluate maze
         // and print path or compute the users inputted path
+
         Options options = new Options();
-        options.addOption("i",true, "Inputting the Maze Using i Flag");
+        options.addOption("i", true, "Inputting the Maze Using i Flag");
         CommandLineParser parser = new DefaultParser();
         try {
             CommandLine cmd = parser.parse(options, arguments);
@@ -23,7 +24,6 @@ public class Configuration {
             logger.error("Exiting Program.");
             System.exit(1);
         }
-        // Obtain the path of the supposed text file from the i flag
         return filepath;
     }
 }

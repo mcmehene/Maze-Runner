@@ -13,10 +13,14 @@ public class Main {
         logger.info("** Starting Maze Runner");
         // Run configuration of flags
         Configuration.arguments = args;
-        String[][] grid = MazeToGrid.mazeArray();
+        MazeSolver mazeSolver = new MazeSolver();
+        String test = mazeSolver.printMaze();
+
         // ################################### NOTE ########################################
         // Make Maze Solver the class to be objectified. Main does not need to know how or
-        // enact the maze creation and delegate it to mazeSolver. So fix.
+        // enact the maze creation and delegate it to mazeSolver. Fix Achieved
+        // Now the only thing main needs to retrieve from MazeSolver is the solution path
+        // itself.
         // ################################### NOTE #########################################
 
         logger.info("**** Computing path");
