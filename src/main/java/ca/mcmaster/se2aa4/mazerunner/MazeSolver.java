@@ -21,7 +21,6 @@ public class MazeSolver {
     public static String recursiveSolution() {
         // I'm not yet sure how to move through maze, but I believe recursion is best bet.
         return "Path";
-
     }
 
 }
