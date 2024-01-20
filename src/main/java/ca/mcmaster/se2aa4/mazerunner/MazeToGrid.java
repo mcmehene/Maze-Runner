@@ -18,12 +18,11 @@ public class MazeToGrid {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(path));
             String line;
-            boolean first = false;
+            columns = 0;
             while ((line = reader.readLine()) != null) {
                 rows++;
-                if (!first) {
+                if (line.length() > columns) {
                     columns = line.length();
-                    first = true;
                 }
             }
         } catch (Exception efnf1) {
@@ -49,11 +48,27 @@ public class MazeToGrid {
                     logger.info("Null Line");
                     line = " ".repeat(Math.max(0, columns));
                 }
-                for (int idx = 0; idx < columns; idx++) {
-                    if (line.charAt(idx) == '#') {
-                        maze[rowIndex][idx] = "#";
-                    } else if (line.charAt(idx) == ' ') {
-                        maze[rowIndex][idx] = " ";
+
+                // If the lines have the same length as columns then regular process...
+                if (line.length() == columns) {
+                    for (int idx = 0; idx < columns; idx++) {
+                        if (line.charAt(idx) == '#') {
+                            maze[rowIndex][idx] = "#";
+                        } else if (line.charAt(idx) == ' ') {
+                            maze[rowIndex][idx] = " ";
+                        }
+                    }
+                // ...otherwise we must add the missing spaces so we respect matrix bounds.
+                } else {
+                    int difference = columns - line.length();
+                    String missingChars = " ".repeat(Math.max(0,difference));
+                    line += missingChars;
+                    for (int idx = 0; idx < columns; idx++) {
+                        if (line.charAt(idx) == '#') {
+                            maze[rowIndex][idx] = "#";
+                        } else if (line.charAt(idx) == ' ') {
+                            maze[rowIndex][idx] = " ";
+                        }
                     }
                 }
             }
