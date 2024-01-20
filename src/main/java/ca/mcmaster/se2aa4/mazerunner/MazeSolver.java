@@ -6,7 +6,6 @@ public class MazeSolver {
     private static final int columns = MazeToGrid.columns;
 
     private static int rowStartCoordinate;
-    private static int rowEndCoordinate;
     private static final int columnStartCoordinate = 0;
 
     private void findStartCoordinates() {
@@ -14,7 +13,7 @@ public class MazeSolver {
         int start = 0;
         boolean coordinateNotFound = true;
         while (coordinateNotFound) {
-            System.out.println(maze[0][start]);
+            //System.out.println(maze[0][start]);
             if (maze[start][0].equals(" ")) {
                 rowStartCoordinate = start;
                 coordinateNotFound = false;
@@ -25,16 +24,16 @@ public class MazeSolver {
 
     private void findEndCoordinates() {
         // Determine the final coordinate of the search, so we can check if end reached
-        int end = 0;
+        /*int start = 0;
         boolean coordinateNotFound = true;
         while (coordinateNotFound) {
-            System.out.println(maze[0][end]);
-            if (maze[end][columns - 1].equals(" ")) {
-                rowEndCoordinate = end;
+            System.out.println(maze[0][start]);
+            if (maze[start][0].equals(" ")) {
+                rowStartCoordinate = start;
                 coordinateNotFound = false;
             }
-            end++;
-        }
+            start++;
+        }*/
     }
 
     public String recursiveSolution() {
@@ -49,15 +48,13 @@ public class MazeSolver {
 
     public String printMaze() {
         findStartCoordinates();
-        findEndCoordinates();
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
-                System.out.print(maze[i][j] + " ");
+                System.out.print(maze[i][j]);
             }
-            System.out.println();
+            System.out.print(System.lineSeparator());
         }
         System.out.println(rowStartCoordinate);
-        System.out.println(rowEndCoordinate);
         return "Printed";
     }
 
