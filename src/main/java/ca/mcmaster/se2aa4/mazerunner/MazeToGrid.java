@@ -39,8 +39,6 @@ public class MazeToGrid {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(path));
             String line;
-            System.out.println(columns);
-            System.out.println(rows);
             for (int rowIndex = 0; rowIndex < rows; rowIndex++) {
 
                 // Null Line Checker, Fill String Line with Spaces so Readable
