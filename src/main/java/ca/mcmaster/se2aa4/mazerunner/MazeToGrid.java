@@ -40,15 +40,15 @@ public class MazeToGrid {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(path));
             String line;
-            //int rowIndex = 0;
             System.out.println(columns);
             System.out.println(rows);
             for (int rowIndex = 0; rowIndex < rows; rowIndex++) {
-                //line = reader.readLine();
+
+                // Null Line Checker, Fill String Line with Spaces so Readable
                 if (Objects.equals(line = reader.readLine(), "")) {
                     logger.info("Null Line");
+                    line = " ".repeat(Math.max(0, columns));
                 }
-                System.out.println("Line: " + line);
                 for (int idx = 0; idx < columns; idx++) {
                     if (line.charAt(idx) == '#') {
                         maze[rowIndex][idx] = "#";
@@ -58,7 +58,6 @@ public class MazeToGrid {
                 }
             }
             //System.out.print(System.lineSeparator());
-            //System.out.println("ERROR");
         } catch (Exception efnf2) {
             logger.error("makeArray Error: " + efnf2);
             logger.error("Exiting Program.");
