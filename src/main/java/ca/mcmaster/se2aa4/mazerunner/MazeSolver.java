@@ -6,6 +6,7 @@ public class MazeSolver {
     private static final int columns = MazeToGrid.columns;
 
     private static int rowStartCoordinate;
+    private static int rowEndCoordinate;
     private static final int columnStartCoordinate = 0;
 
     private void findStartCoordinates() {
@@ -22,9 +23,18 @@ public class MazeSolver {
         }
     }
 
-    public int findEndCoordinates() {
+    private void findEndCoordinates() {
         // Determine the final coordinate of the search, so we can check if end reached
-        return 0;
+        int end = 0;
+        boolean coordinateNotFound = true;
+        while (coordinateNotFound) {
+            System.out.println(maze[0][end]);
+            if (maze[end][columns - 1].equals(" ")) {
+                rowEndCoordinate = end;
+                coordinateNotFound = false;
+            }
+            end++;
+        }
     }
 
     public String recursiveSolution() {
@@ -39,6 +49,7 @@ public class MazeSolver {
 
     public String printMaze() {
         findStartCoordinates();
+        findEndCoordinates();
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
                 System.out.print(maze[i][j] + " ");
@@ -46,6 +57,7 @@ public class MazeSolver {
             System.out.println();
         }
         System.out.println(rowStartCoordinate);
+        System.out.println(rowEndCoordinate);
         return "Printed";
     }
 

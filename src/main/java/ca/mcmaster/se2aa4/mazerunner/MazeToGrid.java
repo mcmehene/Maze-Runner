@@ -27,6 +27,8 @@ public class MazeToGrid {
             }
         } catch (Exception efnf1) {
             logger.error("rowDimension File Error: " + efnf1);
+            logger.error("Exiting Program.");
+            System.exit(1);
         }
     }
 
