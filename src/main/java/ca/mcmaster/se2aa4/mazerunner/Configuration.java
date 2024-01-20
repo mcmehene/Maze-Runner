@@ -6,7 +6,7 @@ import org.apache.logging.log4j.*;
 public class Configuration {
     public static String[] arguments;
     private static final Logger logger = LogManager.getLogger();
-    public static String filepath;
+    private static String filepath;
     public static String iFlag() {
         // Read i flag and return its path if valid
         // Read p and return status of p to determine if we should evaluate maze
