@@ -106,7 +106,7 @@ public class MazeSolver {
                     solFinal.append("R");
                     solFinal.append("F");
                 } else if (solution.charAt(end) == 'S' && solution.charAt(end-1) == 'E') {
-                    solFinal.append("R");
+                    solFinal.append("L");
                     solFinal.append("F");
                 } else if (solution.charAt(end) == 'N' && solution.charAt(end-1) == 'E') {
                     solFinal.append("R");
