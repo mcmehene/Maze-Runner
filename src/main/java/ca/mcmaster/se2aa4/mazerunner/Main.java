@@ -10,9 +10,12 @@ public class Main {
     private static final Logger logger = LogManager.getLogger();
 
     public static void main(String[] args) {
+        // Run configuration of flags.
         logger.info("** Starting Maze Runner");
-        // Run configuration of flags
         Configuration.arguments = args;
+
+        // Printing the maze.
+        logger.info("Printing Maze From User");
         MazeSolver mazeSolver = new MazeSolver();
         String test = mazeSolver.printMaze();
 
@@ -23,8 +26,10 @@ public class Main {
         // itself.
         // ################################### NOTE #########################################
 
-        logger.info("**** Computing path");
-        logger.info("PATH NOT COMPUTED");
+        // Compute the maze path.
+        logger.info("**** Maze Path");
+        System.out.println("Solution: "+ mazeSolver.finalPath());
+        // Le Fin.
         logger.info("** End of MazeRunner");
     }
 }
