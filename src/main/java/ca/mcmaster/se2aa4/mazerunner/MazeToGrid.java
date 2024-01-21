@@ -56,7 +56,7 @@ public class MazeToGrid {
                             maze[rowIndex][idx] = " ";
                         }
                     }
-                // ...otherwise we must add the missing spaces so we respect matrix bounds.
+                // ...otherwise we must add the missing spaces, so we respect matrix bounds.
                 } else {
                     int difference = columns - line.length();
                     String missingChars = " ".repeat(Math.max(0,difference));
@@ -70,7 +70,6 @@ public class MazeToGrid {
                     }
                 }
             }
-            //System.out.print(System.lineSeparator());
         } catch (Exception efnf2) {
             logger.error("makeArray Error: " + efnf2);
             logger.error("Exiting Program.");

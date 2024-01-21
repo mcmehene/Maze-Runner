@@ -11,14 +11,8 @@ public class Main {
 
     public static void main(String[] args) {
         // Run configuration of flags.
-        logger.info("** Starting Maze Runner");
+        logger.info("********* Starting Maze Runner *********");
         Configuration.arguments = args;
-
-        // Printing the maze.
-        logger.info("Printing Maze From User");
-        MazeSolver mazeSolver = new MazeSolver();
-        mazeSolver.printMaze();
-
         // ################################### NOTE ########################################
         // Make Maze Solver the class to be objectified. Main does not need to know how or
         // enact the maze creation and delegate it to mazeSolver. Fix Achieved
@@ -27,10 +21,12 @@ public class Main {
         // ################################### NOTE #########################################
 
         // Compute the maze path.
-        logger.info("**** Maze Path");
-        System.out.println("Solution: " + mazeSolver.finalPath());
-        mazeSolver.printMaze();
+        logger.info("**** Maze Paths ****");
+        logger.info("Full Path Solution: " + MazeSolver.cardinalToCanonical());
+        logger.info("Factored Path Solution: " + MazeSolver.canonicalToFactored());
+        // Printing the maze.
+        MazeSolver.printMaze();
         // Le Fin.
-        logger.info("** End of MazeRunner");
+        logger.info("** End of MazeRunner **");
     }
 }

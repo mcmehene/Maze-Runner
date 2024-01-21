@@ -7,8 +7,9 @@ public class MazeSolver {
     private static int rowStartCoordinate;
     private static int rowEndCoordinate;
     private static String solution = "";
+    private static final StringBuilder solFinal = new StringBuilder();
 
-    private void findStartCoordinates() {
+    private static void findStartCoordinates() {
         // Determine where we begin the search
         int start = 0;
         boolean coordinateNotFound = true;
@@ -21,7 +22,7 @@ public class MazeSolver {
         }
     }
 
-    private void findEndCoordinates() {
+    private static void findEndCoordinates() {
         // Determine the final coordinate of the search, so we can check if end reached
         int end = 0;
         boolean coordinateNotFound = true;
@@ -34,68 +35,124 @@ public class MazeSolver {
         }
     }
 
-    private boolean recursiveSolution(String[][] mazeInput, int row, int column) {
-
-        // Check End Coordinate Status: Yes = Return Path, No = Continue Recursion
-        //System.out.print("Current: " + row + " Current: "+column + "\n");
-        //System.out.print("END COORDINATE: "+ rowEndCoordinate + " END COLUMN: " + (columns -1));
-        //System.out.println();
+    private static boolean recursiveSolution(String[][] mazeInput, int row, int column) {
+        // Check if we have reached the end of the maze. If we have, put a east marker to say exit
+        // and place a star to complete the path through the printed maze.
         if (row == rowEndCoordinate && column == columns - 1) {
             solution += "E";
-            maze[rowEndCoordinate][columns-1] = "*";
+            mazeInput[rowEndCoordinate][columns-1] = "*";
             return true;
         }
 
         // Prevents arrays moving out of bounds
         if ((row >= 0 && row < mazeInput.length) && (column >= 0 && column < mazeInput[0].length) && mazeInput[row][column].equals(" ")) {
-            maze[row][column] = "T";
-            // SOUTH
+            mazeInput[row][column] = "T";
+
+            // SOUTH DIRECTION
             if (recursiveSolution(mazeInput,row + 1, column)) {
                 solution += "S";
-                maze[row][column] = "*";
+                mazeInput[row][column] = "*";
                 return true;
             }
-            // EAST
+            // EAST DIRECTION
             if (recursiveSolution(mazeInput,row,column + 1)) {
                 solution += "E";
-                maze[row][column] = "*";
+                mazeInput[row][column] = "*";
                 return true;
             }
-            // WEST
+            // WEST DIRECTION
             if (recursiveSolution(mazeInput, row,column - 1)) {
                 solution += "W";
-                maze[row][column] = "*";
+                mazeInput[row][column] = "*";
                 return true;
             }
-            // NORTH
+            // NORTH DIRECTION
             if (recursiveSolution(mazeInput,row - 1, column)) {
                 solution += "N";
-                maze[row][column] = "*";
+                mazeInput[row][column] = "*";
                 return true;
             }
         }
         return false;
     }
 
-    public String finalPath() {
+    private static void finalPath() {
         findStartCoordinates();
         findEndCoordinates();
-        if (recursiveSolution(maze, rowStartCoordinate,0)) {
-            return solution;
-        }
-        return "NO PATH";
+        recursiveSolution(maze, rowStartCoordinate,0);
     }
 
-    public void printMaze() {
-        //findStartCoordinates();
-        //findEndCoordinates();
+    public static String cardinalToCanonical() {
+        finalPath();
+        //StringBuilder solFinal = new StringBuilder();
+        solFinal.append("F");
+        for (int end = solution.length()-1; end > 0; end--) {
+            if (solution.charAt(end) == solution.charAt(end-1)) {
+                solFinal.append("F");
+            } else {
+                if (solution.charAt(end) == 'E' && solution.charAt(end-1) == 'S') {
+                    solFinal.append("R");
+                    solFinal.append("F");
+                } else if (solution.charAt(end) == 'E' && solution.charAt(end-1) == 'N') {
+                    solFinal.append("L");
+                    solFinal.append("F");
+                } else if (solution.charAt(end) == 'W' && solution.charAt(end-1) == 'S') {
+                    solFinal.append("L");
+                    solFinal.append("F");
+                } else if (solution.charAt(end) == 'W' && solution.charAt(end-1) == 'N') {
+                    solFinal.append("R");
+                    solFinal.append("F");
+                } else if (solution.charAt(end) == 'S' && solution.charAt(end-1) == 'E') {
+                    solFinal.append("R");
+                    solFinal.append("F");
+                } else if (solution.charAt(end) == 'N' && solution.charAt(end-1) == 'E') {
+                    solFinal.append("R");
+                    solFinal.append("F");
+                } else if (solution.charAt(end) == 'S' && solution.charAt(end-1) == 'W') {
+                    solFinal.append("L");
+                    solFinal.append("F");
+                } else if (solution.charAt(end) == 'N' && solution.charAt(end-1) == 'W') {
+                    solFinal.append("L");
+                    solFinal.append("F");
+                }
+            }
+        }
+        return solFinal.toString();
+    }
+
+    public static String canonicalToFactored() {
+        int amountF = 0;
+        StringBuilder factored = new StringBuilder();
+        for (int c = 0; c < solFinal.length(); c++) {
+            if (solFinal.charAt(c) == 'F') {
+                amountF++;
+            } else if (solFinal.charAt(c) == 'L') {
+                if (amountF != 0) {
+                    factored.append(amountF).append("F").append(" ");
+                }
+                amountF = 0;
+                factored.append("L").append(" ");
+            } else if (solFinal.charAt(c) == 'R') {
+                if (amountF != 0) {
+                    factored.append(amountF).append("F").append(" ");
+                }
+                amountF = 0;
+                factored.append("R").append(" ");
+            }
+        }
+        // Calculate the final F's after the last turn.
+        if (amountF != 0) {
+            factored.append(amountF).append("F").append(" ");
+        }
+        return factored.toString();
+    }
+
+    public static void printMaze() {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
                 System.out.print(maze[i][j]);
             }
             System.out.println();
         }
-        //System.out.println(rowStartCoordinate);
-        //System.out.println(rowEndCoordinate);
     }
 }
