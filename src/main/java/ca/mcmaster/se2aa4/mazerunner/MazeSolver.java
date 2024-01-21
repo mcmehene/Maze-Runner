@@ -9,6 +9,7 @@ public class MazeSolver {
     private static String solution = "";
     private static final StringBuilder solFinal = new StringBuilder();
 
+    // COMPUTATION METHODS: findStateCoordinates, findEndCoordinates, recursiveSolution
     private static void findStartCoordinates() {
         // Determine where we begin the search
         int start = 0;
@@ -76,12 +77,14 @@ public class MazeSolver {
         return false;
     }
 
+    // Won't exist when called in main
     private static void finalPath() {
         findStartCoordinates();
         findEndCoordinates();
         recursiveSolution(maze, rowStartCoordinate,0);
     }
 
+    // PRINTING METHODS: cardinalToCanonical, canonicalToFactored, printMaze
     public static String cardinalToCanonical() {
         finalPath();
         //StringBuilder solFinal = new StringBuilder();

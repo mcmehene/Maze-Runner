@@ -1,8 +1,6 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
-import com.sun.source.tree.BreakTree;
 import org.apache.logging.log4j.*;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.Objects;

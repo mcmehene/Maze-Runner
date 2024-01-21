@@ -1,8 +1,5 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import org.apache.commons.cli.*;
 import org.apache.logging.log4j.*;
 
 public class Main {
@@ -13,12 +10,14 @@ public class Main {
         // Run configuration of flags.
         logger.info("********* Starting Maze Runner *********");
         Configuration.arguments = args;
-        // ################################### NOTE ########################################
-        // Make Maze Solver the class to be objectified. Main does not need to know how or
-        // enact the maze creation and delegate it to mazeSolver. Fix Achieved
-        // Now the only thing main needs to retrieve from MazeSolver is the solution path
-        // itself.
-        // ################################### NOTE #########################################
+
+        // 1. Make an instance of MazeToGrid mazeArray 3 times for COMPUTATION METHODS in
+        //    MazeSolver so they each have their own separate maze to calculate with. (Clone).
+        // 2. Move PRINTER METHODS to MazePrinter Class, then pull paths to print.
+        //    So connection between MazeSolver and MazePrinter
+        // 3. Read p flag and Compare Computed non-factored path to de-factored path (if factored)
+        //    of the user. Then return required output per business specifications.
+
 
         // Compute the maze path.
         logger.info("**** Maze Paths ****");
