@@ -112,7 +112,7 @@ public class MazeSolver {
                     solFinal.append("R");
                     solFinal.append("F");
                 } else if (solution.charAt(end) == 'S' && solution.charAt(end-1) == 'W') {
-                    solFinal.append("L");
+                    solFinal.append("R");
                     solFinal.append("F");
                 } else if (solution.charAt(end) == 'N' && solution.charAt(end-1) == 'W') {
                     solFinal.append("L");
