@@ -17,7 +17,7 @@ public class Main {
         // Printing the maze.
         logger.info("Printing Maze From User");
         MazeSolver mazeSolver = new MazeSolver();
-        String test = mazeSolver.printMaze();
+        mazeSolver.printMaze();
 
         // ################################### NOTE ########################################
         // Make Maze Solver the class to be objectified. Main does not need to know how or
@@ -28,7 +28,8 @@ public class Main {
 
         // Compute the maze path.
         logger.info("**** Maze Path");
-        System.out.println("Solution: "+ mazeSolver.finalPath());
+        System.out.println("Solution: " + mazeSolver.finalPath());
+        mazeSolver.printMaze();
         // Le Fin.
         logger.info("** End of MazeRunner");
     }

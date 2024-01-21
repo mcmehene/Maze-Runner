@@ -1,7 +1,5 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
-import java.util.Objects;
-
 public class MazeSolver {
     public static String[][] maze = MazeToGrid.mazeArray();
     private static final int rows = MazeToGrid.rows;
@@ -36,52 +34,59 @@ public class MazeSolver {
         }
     }
 
-    private void recursiveSolution(int row, int column) {
+    private boolean recursiveSolution(String[][] mazeInput, int row, int column) {
 
         // Check End Coordinate Status: Yes = Return Path, No = Continue Recursion
-        if (row != rowEndCoordinate || column != columns - 1) {
+        //System.out.print("Current: " + row + " Current: "+column + "\n");
+        //System.out.print("END COORDINATE: "+ rowEndCoordinate + " END COLUMN: " + (columns -1));
+        //System.out.println();
+        if (row == rowEndCoordinate && column == columns - 1) {
+            solution += "E";
+            maze[rowEndCoordinate][columns-1] = "*";
+            return true;
+        }
 
-            // Mark previous traversal. This will allow us to compute the path
-            // and ensure we keep proceeding to exit.
-
-            // Try to move forward: Wall = Turn Right & Record, Space = Record Movement
-
-            // Prevents arrays moving out of bounds
-            if ((row >= 1 && row < maze.length) && (column >= 1 && column < maze[0].length)) {
-
-                // Step logic
-                if (maze[row][column + 1].equals(" ")) {
-                    // East
-                    solution += "E";
-                    recursiveSolution(row, column + 1);
-                }
-                if (maze[row + 1][column].equals(" ")) {
-                    // South
-                    solution += "S";
-                    recursiveSolution(row + 1, column);
-                }
-                if (maze[row][column - 1].equals(" ")) {
-                    // West
-                    solution += "W";
-                    recursiveSolution(row, column - 1);
-                }
-                if (maze[row - 1][column].equals(" ")) {
-                    // North
-                    solution += "N";
-                    recursiveSolution(row - 1, column);
-                }
+        // Prevents arrays moving out of bounds
+        if ((row >= 0 && row < mazeInput.length) && (column >= 0 && column < mazeInput[0].length) && mazeInput[row][column].equals(" ")) {
+            maze[row][column] = "T";
+            // SOUTH
+            if (recursiveSolution(mazeInput,row + 1, column)) {
+                solution += "S";
+                maze[row][column] = "*";
+                return true;
+            }
+            // EAST
+            if (recursiveSolution(mazeInput,row,column + 1)) {
+                solution += "E";
+                maze[row][column] = "*";
+                return true;
+            }
+            // WEST
+            if (recursiveSolution(mazeInput, row,column - 1)) {
+                solution += "W";
+                maze[row][column] = "*";
+                return true;
+            }
+            // NORTH
+            if (recursiveSolution(mazeInput,row - 1, column)) {
+                solution += "N";
+                maze[row][column] = "*";
+                return true;
             }
         }
+        return false;
     }
 
     public String finalPath() {
         findStartCoordinates();
         findEndCoordinates();
-        recursiveSolution(rowStartCoordinate,0);
-        return solution;
+        if (recursiveSolution(maze, rowStartCoordinate,0)) {
+            return solution;
+        }
+        return "NO PATH";
     }
 
-    public String printMaze() {
+    public void printMaze() {
         //findStartCoordinates();
         //findEndCoordinates();
         for (int i = 0; i < rows; i++) {
@@ -92,6 +97,5 @@ public class MazeSolver {
         }
         //System.out.println(rowStartCoordinate);
         //System.out.println(rowEndCoordinate);
-        return "Printed";
     }
 }
