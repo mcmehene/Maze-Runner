@@ -10,7 +10,9 @@ public class Main {
         // Run configuration of flags.
         logger.info("********* Starting Maze Runner *********");
         Configuration.arguments = args;
-
+        MazeToGrid mazeToGrid = new MazeToGrid();
+        String[][] maze = mazeToGrid.mazeArray();
+        //MazeSolver.recursiveSolution(mazeToGrid1.mazeArray(), mazeToGrid1.rows, 0, );
         // 1. Make an instance of MazeToGrid mazeArray 3 times for COMPUTATION METHODS in
         //    MazeSolver so they each have their own separate maze to calculate with. (Clone).
         // 2. Move PRINTER METHODS to MazePrinter Class, then pull paths to print.
@@ -21,10 +23,10 @@ public class Main {
 
         // Compute the maze path.
         logger.info("**** Maze Paths ****");
-        logger.info("Full Path Solution: " + MazeSolver.cardinalToCanonical());
-        logger.info("Factored Path Solution: " + MazeSolver.canonicalToFactored());
+        logger.info("Full Path Solution: " + MazePrinter.cardinalToCanonical(maze));
+        logger.info("Factored Path Solution: " + MazePrinter.canonicalToFactored());
         // Printing the maze.
-        MazeSolver.printMaze();
+        //MazeSolver.printMaze(maze);
         // Le Fin.
         logger.info("** End of MazeRunner **");
     }

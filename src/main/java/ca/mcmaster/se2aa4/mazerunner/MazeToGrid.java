@@ -8,7 +8,7 @@ import java.util.Objects;
 public class MazeToGrid {
     private static final Logger logger = LogManager.getLogger();
     private static final String path = Configuration.iFlag();
-    public static int rows;
+    private static int rows;
     public static int columns;
 
     // Dimensions computes the size of the maze, that is how wide and how long it is.
@@ -31,7 +31,7 @@ public class MazeToGrid {
     }
 
     // Maze Array Converts the Maze into a Matrix for Program.
-    public static String[][] mazeArray() {
+    public String[][] mazeArray() {
         dimensions();
         String[][] maze = new String[rows][columns];
         try {
@@ -68,6 +68,7 @@ public class MazeToGrid {
                     }
                 }
             }
+            reader.close();
         } catch (Exception efnf2) {
             logger.error("makeArray Error: " + efnf2);
             logger.error("Exiting Program.");
