@@ -15,7 +15,7 @@ public class Main {
 
         // Path Processing/Comparing Results
         if (config.flagStatus()) {
-            logger.info("User Path is ");
+            logger.info("User Input is " + UserPathCompare.validity);
         } else {
             logger.info("Full Path Solution: " + MazePrinter.cardinalToCanonical());
             logger.info("Factored Path Solution: " + MazePrinter.canonicalToFactored());

@@ -5,7 +5,6 @@ import org.apache.logging.log4j.*;
 
 public class Configuration {
     private static String[] arguments;
-
     public static String filepath;
     public static String userGuess;
     public Configuration(String[] args) {
@@ -39,25 +38,5 @@ public class Configuration {
             System.exit(1);
         }
         return false;
-    }
-
-    public static String pFlag() {
-        Options options = new Options();
-        options.addOption("p", true, "User Inputted Path for Comparing");
-        CommandLineParser parser = new DefaultParser();
-        String userPath;
-        try {
-            CommandLine cmd = parser.parse(options, arguments);
-            userPath = cmd.getOptionValue("p");
-            logger.info("User Guess Path: " + userPath);
-        } catch (Exception pe) {
-            logger.info("P Flag Does Not Exist.");
-            return null;
-        }
-        return userPath;
-    }
-
-    public boolean processFlags() {
-        return pFlag() != null;
     }
 }
