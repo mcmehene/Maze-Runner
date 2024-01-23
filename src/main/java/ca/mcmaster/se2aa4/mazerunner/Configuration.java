@@ -5,29 +5,40 @@ import org.apache.logging.log4j.*;
 
 public class Configuration {
     private static String[] arguments;
+
+    public static String filepath;
+    public static String userGuess;
     public Configuration(String[] args) {
         arguments = args;
     }
     private static final Logger logger = LogManager.getLogger();
 
-    public static String iFlag() {
+    public boolean iFlag() {
         // Read i flag and return its path if valid
         // Read p and return status of p to determine if we should evaluate maze
         // and print path or compute the users inputted path
-        String filepath = "";
         Options options = new Options();
         options.addOption("i", true, "Inputting the Maze Using i Flag");
+        options.addOption("p", true, "User Inputted Path for Comparing");
         CommandLineParser parser = new DefaultParser();
         try {
             CommandLine cmd = parser.parse(options, arguments);
-            filepath = cmd.getOptionValue("i");
-            logger.info("The filepath is: " + filepath);
+            if (cmd.hasOption("i") && !cmd.hasOption("p")) {
+                filepath = cmd.getOptionValue("i");
+                return false;
+            } else if (cmd.hasOption("p") && cmd.hasOption("i")) {
+                filepath = cmd.getOptionValue("i");
+                userGuess = cmd.getOptionValue("p");
+                return true;
+            } else {
+                return false;
+            }
         } catch (Exception pe) {
-            logger.error("Error: " + pe);
+            logger.error("iFlag Error: " + pe);
             logger.error("Exiting Program.");
             System.exit(1);
         }
-        return filepath;
+        return false;
     }
 
     public static String pFlag() {
@@ -40,7 +51,7 @@ public class Configuration {
             userPath = cmd.getOptionValue("p");
             logger.info("User Guess Path: " + userPath);
         } catch (Exception pe) {
-            logger.info("P Flag does not Exist.");
+            logger.info("P Flag Does Not Exist.");
             return null;
         }
         return userPath;
