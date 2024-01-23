@@ -4,10 +4,10 @@ import org.apache.commons.cli.*;
 import org.apache.logging.log4j.*;
 
 public class Configuration {
+    private static String[] arguments;
     public Configuration(String[] args) {
         arguments = args;
     }
-    private static String[] arguments;
     private static final Logger logger = LogManager.getLogger();
 
     public static String iFlag() {

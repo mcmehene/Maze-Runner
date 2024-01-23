@@ -9,9 +9,13 @@ public class Main {
     public static void main(String[] args) {
         // Run configuration of flags.
         logger.info("********* Starting Maze Runner *********");
-        Configuration config = new Configuration(args);
-        if (config.processFlags()) {
 
+        // Flag Processing
+        Configuration config = new Configuration(args);
+
+        // Path Processing/Comparing Results
+        if (config.processFlags()) {
+            logger.info("User Path is ");
         } else {
             logger.info("Full Path Solution: " + MazePrinter.cardinalToCanonical());
             logger.info("Factored Path Solution: " + MazePrinter.canonicalToFactored());
@@ -24,11 +28,6 @@ public class Main {
         // 3. Read p flag and Compare Computed non-factored path to de-factored path (if factored)
         //    of the user. Then return required output per business specifications.
 
-
-        // Compute the maze path.
-        logger.info("**** Maze Paths ****");
-        // Printing the maze.
-        //MazeSolver.printMaze(maze);
         // Le Fin.
         logger.info("** End of MazeRunner **");
     }

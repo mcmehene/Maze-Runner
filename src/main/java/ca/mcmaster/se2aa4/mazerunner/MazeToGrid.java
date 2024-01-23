@@ -8,15 +8,14 @@ import java.util.Objects;
 public class MazeToGrid {
     private static final Logger logger = LogManager.getLogger();
     private static final String path = Configuration.iFlag();
-    private static int rows;
-    public static int columns;
 
     // Dimensions computes the size of the maze, that is how wide and how long it is.
-    private static void dimensions() {
+    private static int[] dimensions() {
+        int rows = 0;
+        int columns = 0;
         try {
             BufferedReader reader = new BufferedReader(new FileReader(path));
             String line;
-            columns = 0;
             while ((line = reader.readLine()) != null) {
                 rows++;
                 if (line.length() > columns) {
@@ -28,11 +27,14 @@ public class MazeToGrid {
             logger.error("Exiting Program.");
             System.exit(1);
         }
+        return new int[]{rows, columns};
     }
 
     // Maze Array Converts the Maze into a Matrix for Program.
     public String[][] mazeArray() {
-        dimensions();
+        int[] dimensions = dimensions();
+        int rows = dimensions[0];
+        int columns = dimensions[1];
         String[][] maze = new String[rows][columns];
         try {
             BufferedReader reader = new BufferedReader(new FileReader(path));
@@ -42,7 +44,7 @@ public class MazeToGrid {
                 // Null Line Checker, Fill String Line with Spaces so Readable
                 if (Objects.equals(line = reader.readLine(), "")) {
                     logger.info("Null Line");
-                    line = " ".repeat(Math.max(0, columns));
+                    line = " ".repeat(columns);
                 }
 
                 // If the lines have the same length as columns then regular process...

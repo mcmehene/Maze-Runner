@@ -4,7 +4,7 @@ package ca.mcmaster.se2aa4.mazerunner;
 public class MazePrinter {
     private static final StringBuilder solFinal = new StringBuilder();
 
-    // PRINTING METHODS: cardinalToCanonical, canonicalToFactored, printMaze
+    // PRINTING METHODS: cardinalToCanonical, canonicalToFactored
     public static String cardinalToCanonical() {
         String pathSolution = MazeSolver.finalPath();
         solFinal.append("F");
@@ -13,45 +13,21 @@ public class MazePrinter {
                 solFinal.append("F");
             } else {
                 if (pathSolution.charAt(end) == 'E' && pathSolution.charAt(end-1) == 'S') {
-                    solFinal.append(" ");
-                    solFinal.append("R");
-                    solFinal.append(" ");
-                    solFinal.append("F");
+                    solFinal.append(" R F");
                 } else if (pathSolution.charAt(end) == 'E' && pathSolution.charAt(end-1) == 'N') {
-                    solFinal.append(" ");
-                    solFinal.append("L");
-                    solFinal.append(" ");
-                    solFinal.append("F");
+                    solFinal.append(" L F");
                 } else if (pathSolution.charAt(end) == 'W' && pathSolution.charAt(end-1) == 'S') {
-                    solFinal.append(" ");
-                    solFinal.append("L");
-                    solFinal.append(" ");
-                    solFinal.append("F");
+                    solFinal.append(" L F");
                 } else if (pathSolution.charAt(end) == 'W' && pathSolution.charAt(end-1) == 'N') {
-                    solFinal.append(" ");
-                    solFinal.append("R");
-                    solFinal.append(" ");
-                    solFinal.append("F");
+                    solFinal.append(" R F");
                 } else if (pathSolution.charAt(end) == 'S' && pathSolution.charAt(end-1) == 'E') {
-                    solFinal.append(" ");
-                    solFinal.append("L");
-                    solFinal.append(" ");
-                    solFinal.append("F");
+                    solFinal.append(" L F");
                 } else if (pathSolution.charAt(end) == 'N' && pathSolution.charAt(end-1) == 'E') {
-                    solFinal.append(" ");
-                    solFinal.append("R");
-                    solFinal.append(" ");
-                    solFinal.append("F");
+                    solFinal.append(" R F");
                 } else if (pathSolution.charAt(end) == 'S' && pathSolution.charAt(end-1) == 'W') {
-                    solFinal.append(" ");
-                    solFinal.append("R");
-                    solFinal.append(" ");
-                    solFinal.append("F");
+                    solFinal.append(" R F");
                 } else if (pathSolution.charAt(end) == 'N' && pathSolution.charAt(end-1) == 'W') {
-                    solFinal.append(" ");
-                    solFinal.append("L");
-                    solFinal.append(" ");
-                    solFinal.append("F");
+                    solFinal.append(" L F");
                 }
             }
         }
