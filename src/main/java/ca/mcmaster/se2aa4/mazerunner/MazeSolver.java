@@ -1,14 +1,13 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
 public class MazeSolver {
-    private static int rowStartCoordinate;
-    private static int rowEndCoordinate;
     private static String solution = "";
 
     // COMPUTATION METHODS: findStateCoordinates, findEndCoordinates, recursiveSolution
-    private static void findStartCoordinates(String[][] maze) {
+    private static int findStartCoordinates(String[][] maze) {
         // Determine where we begin the search
         int start = 0;
+        int rowStartCoordinate = 0;
         //int rowStartCoordinate = 0;
         boolean coordinateNotFound = true;
         while (coordinateNotFound) {
@@ -18,11 +17,13 @@ public class MazeSolver {
             }
             start++;
         }
+        return rowStartCoordinate;
     }
 
-    private static void findEndCoordinates(String[][] maze) {
+    private static int findEndCoordinates(String[][] maze) {
         // Determine the final coordinate of the search, so we can check if end reached
         int end = 0;
+        int rowEndCoordinate = 0;
         //int rowEndCoordinate = 0;
         boolean coordinateNotFound = true;
         while (coordinateNotFound) {
@@ -32,14 +33,15 @@ public class MazeSolver {
             }
             end++;
         }
+        return rowEndCoordinate;
     }
 
-    private static boolean recursiveSolution(String[][] mazeInput, int row, int column) {
+    private static boolean recursiveSolution(String[][] mazeInput, int row, int column, int rowEnd) {
         // Check if we have reached the end of the maze. If we have, put an east marker to say exit
         // and place a star to complete the path through the printed maze.
-        if (row == rowEndCoordinate && column == mazeInput[0].length - 1) {
+        if (row == rowEnd && column == mazeInput[0].length - 1) {
             solution += "E";
-            mazeInput[rowEndCoordinate][mazeInput[0].length - 1] = "*";
+            mazeInput[rowEnd][mazeInput[0].length - 1] = "*";
             return true;
         }
 
@@ -47,37 +49,35 @@ public class MazeSolver {
         if ((row >= 0 && row < mazeInput.length) && (column >= 0 && column < mazeInput[0].length) && mazeInput[row][column].equals(" ")) {
             mazeInput[row][column] = "T";
             // SOUTH DIRECTION
-            if (recursiveSolution(mazeInput,row + 1, column)) {
+            if (recursiveSolution(mazeInput,row + 1, column, rowEnd)) {
                 solution += "S";
-                //mazeInput[row][column] = "*";
                 return true;
             }
             // EAST DIRECTION
-            if (recursiveSolution(mazeInput,row,column + 1)) {
+            if (recursiveSolution(mazeInput,row,column + 1, rowEnd)) {
                 solution += "E";
-                //mazeInput[row][column] = "*";
                 return true;
             }
             // WEST DIRECTION
-            if (recursiveSolution(mazeInput, row,column - 1)) {
+            if (recursiveSolution(mazeInput, row,column - 1, rowEnd)) {
                 solution += "W";
-                //mazeInput[row][column] = "*";
                 return true;
             }
             // NORTH DIRECTION
-            if (recursiveSolution(mazeInput,row - 1, column)) {
+            if (recursiveSolution(mazeInput,row - 1, column, rowEnd)) {
                 solution += "N";
-                //mazeInput[row][column] = "*";
                 return true;
             }
         }
         return false;
     }
 
-    public static String finalPath(String[][] maze) {
-        findStartCoordinates(maze);
-        findEndCoordinates(maze);
-        recursiveSolution(maze, rowStartCoordinate,0);
+    public static String finalPath() {
+        MazeToGrid mazeToGrid = new MazeToGrid();
+        String[][] maze = mazeToGrid.mazeArray();
+        int rowStart = findStartCoordinates(maze);
+        int rowEnd = findEndCoordinates(maze);
+        recursiveSolution(maze, rowStart,0, rowEnd);
         return solution;
     }
 }

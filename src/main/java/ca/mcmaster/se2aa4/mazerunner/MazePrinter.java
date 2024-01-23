@@ -3,9 +3,10 @@ package ca.mcmaster.se2aa4.mazerunner;
 // CLASS: PRINT PATHS & MAZES
 public class MazePrinter {
     private static final StringBuilder solFinal = new StringBuilder();
+
     // PRINTING METHODS: cardinalToCanonical, canonicalToFactored, printMaze
-    public static String cardinalToCanonical(String[][] maze) {
-        String pathSolution = MazeSolver.finalPath(maze);
+    public static String cardinalToCanonical() {
+        String pathSolution = MazeSolver.finalPath();
         solFinal.append("F");
         for (int end = pathSolution.length()-1; end > 0; end--) {
             if (pathSolution.charAt(end) == pathSolution.charAt(end-1)) {
@@ -83,13 +84,4 @@ public class MazePrinter {
         }
         return factored.toString();
     }
-
-    /*public static void printMaze(String[][] maze) {
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < columns; j++) {
-                System.out.print(maze[i][j]);
-            }
-            System.out.println();
-        }
-    }*/
 }
