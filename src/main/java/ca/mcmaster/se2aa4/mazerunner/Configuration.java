@@ -13,7 +13,7 @@ public class Configuration {
     }
     private static final Logger logger = LogManager.getLogger();
 
-    public boolean iFlag() {
+    public boolean flagStatus() {
         // Read i flag and return its path if valid
         // Read p and return status of p to determine if we should evaluate maze
         // and print path or compute the users inputted path

@@ -14,7 +14,7 @@ public class Main {
         Configuration config = new Configuration(args);
 
         // Path Processing/Comparing Results
-        if (config.iFlag()) {
+        if (config.flagStatus()) {
             logger.info("User Path is ");
         } else {
             logger.info("Full Path Solution: " + MazePrinter.cardinalToCanonical());
