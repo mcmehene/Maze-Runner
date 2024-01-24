@@ -21,6 +21,7 @@ public class MazeToGrid {
                     columns = line.length();
                 }
             }
+            reader.close();
         } catch (Exception efnf1) {
             logger.error("rowDimension File Error: " + efnf1);
             logger.error("Exiting Program.");
@@ -42,7 +43,7 @@ public class MazeToGrid {
 
                 // Null Line Checker, Fill String Line with Spaces so Readable
                 if (Objects.equals(line = reader.readLine(), "")) {
-                    logger.info("Null Line");
+                    //logger.info("Null Line");
                     line = " ".repeat(columns);
                 }
 

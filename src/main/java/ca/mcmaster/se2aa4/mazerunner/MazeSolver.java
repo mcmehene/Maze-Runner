@@ -1,14 +1,13 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
 public class MazeSolver {
-    private static String solution = "";
+    private static String solution;
 
     // COMPUTATION METHODS: findStateCoordinates, findEndCoordinates, recursiveSolution
     private static int findStartCoordinates(String[][] maze) {
         // Determine where we begin the search
         int start = 0;
         int rowStartCoordinate = 0;
-        //int rowStartCoordinate = 0;
         boolean coordinateNotFound = true;
         while (coordinateNotFound) {
             if (maze[start][0].equals(" ")) {
@@ -24,7 +23,6 @@ public class MazeSolver {
         // Determine the final coordinate of the search, so we can check if end reached
         int end = 0;
         int rowEndCoordinate = 0;
-        //int rowEndCoordinate = 0;
         boolean coordinateNotFound = true;
         while (coordinateNotFound) {
             if (maze[end][maze[0].length - 1].equals(" ")) {
@@ -75,9 +73,8 @@ public class MazeSolver {
     public static String finalPath() {
         MazeToGrid mazeToGrid = new MazeToGrid();
         String[][] maze = mazeToGrid.mazeArray();
-        int rowStart = findStartCoordinates(maze);
-        int rowEnd = findEndCoordinates(maze);
-        recursiveSolution(maze, rowStart,0, rowEnd);
+        solution = "";
+        recursiveSolution(maze, findStartCoordinates(maze),0, findEndCoordinates(maze));
         return solution;
     }
 }

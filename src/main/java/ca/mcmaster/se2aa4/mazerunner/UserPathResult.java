@@ -12,9 +12,7 @@ public class UserPathResult {
         try {
             int onlyNumbers = 0;
             if (userPath != null) {
-                System.out.println("Path: "+userPath);
                 for (int i = 0; i < userPath.length(); i++) {
-                    System.out.println("Char: "+userPath.charAt(i));
                     if (userPath.charAt(i) != 'F' && userPath.charAt(i) != 'L'
                             && userPath.charAt(i) != 'R' && !Character.isDigit(userPath.charAt(i))) {
                         return false;
