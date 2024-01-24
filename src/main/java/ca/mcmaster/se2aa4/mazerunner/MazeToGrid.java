@@ -7,14 +7,14 @@ import java.util.Objects;
 
 public class MazeToGrid {
     private static final Logger logger = LogManager.getLogger();
-    private static final String path = Configuration.filepath;
+    //private static final String path = Configuration.filepath();
 
     // Dimensions computes the size of the maze, that is how wide and how long it is.
     private static int[] dimensions() {
         int rows = 0;
         int columns = 0;
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(path));
+            BufferedReader reader = new BufferedReader(new FileReader(Configuration.filepath()));
             String line;
             while ((line = reader.readLine()) != null) {
                 rows++;
@@ -37,7 +37,7 @@ public class MazeToGrid {
         int columns = dimensions[1];
         String[][] maze = new String[rows][columns];
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(path));
+            BufferedReader reader = new BufferedReader(new FileReader(Configuration.filepath()));
             String line;
             for (int rowIndex = 0; rowIndex < rows; rowIndex++) {
 

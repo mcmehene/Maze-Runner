@@ -5,8 +5,8 @@ import org.apache.logging.log4j.*;
 
 public class Configuration {
     private static String[] arguments;
-    public static String filepath;
-    public static String userGuess;
+    private static String filepath;
+    private static String userGuess;
     public Configuration(String[] args) {
         arguments = args;
     }
@@ -38,5 +38,13 @@ public class Configuration {
             System.exit(1);
         }
         return false;
+    }
+
+    public static String filepath() {
+        return filepath;
+    }
+
+    public static String userGuess() {
+        return userGuess;
     }
 }

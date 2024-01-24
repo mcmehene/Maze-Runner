@@ -3,12 +3,13 @@ package ca.mcmaster.se2aa4.mazerunner;
 import org.apache.logging.log4j.*;
 
 public class UserPathResult {
-    private static final String userPath = Configuration.userGuess;
+    //private static final String userPath = Configuration.userGuess();
     private static final Logger logger = LogManager.getLogger();
     public static boolean validInput() {
         // validInput calculates if the users path follows the criteria of F, L, R or numbers
         // Sends the path to factored if factored path, sends to notFactored if not factored,
         // send false to Configuration if the path is not syntactically correct
+        String userPath = Configuration.userGuess();
         try {
             int onlyNumbers = 0;
             if (userPath != null) {
