@@ -7,7 +7,6 @@ import java.util.Objects;
 
 public class MazeToGrid {
     private static final Logger logger = LogManager.getLogger();
-    //private static final String path = Configuration.filepath();
 
     // Dimensions computes the size of the maze, that is how wide and how long it is.
     private static int[] dimensions() {
