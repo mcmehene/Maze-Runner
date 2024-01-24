@@ -13,12 +13,10 @@ public class Main {
         if (Configuration.flagStatus(args)) {
 
             logger.info(UserPathCompare.userAnswer());
-
         } else {
 
             logger.info("Full Path Solution: " + MazePrinter.cardinalToCanonical());
             logger.info("Factored Path Solution: " + MazePrinter.canonicalToFactored());
-
         }
 
         // Le Fin.
