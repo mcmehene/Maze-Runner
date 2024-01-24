@@ -4,12 +4,12 @@ package ca.mcmaster.se2aa4.mazerunner;
 public class MazePrinter {
 
     // PRINTING METHODS: cardinalToCanonical, canonicalToFactored
-    public static String cardinalToCanonical() {
+    public String cardinalToCanonical() {
 
         return pathCalculation();
     }
 
-    public static String canonicalToFactored() {
+    public String canonicalToFactored() {
 
         String solution = pathCalculation();
         int amountF = 0;
@@ -49,9 +49,11 @@ public class MazePrinter {
         return factored.toString();
     }
 
-    private static String pathCalculation() {
+    private String pathCalculation() {
 
-        String pathSolution = MazeSolver.finalPath();
+        MazeSolver mazeSolver = new MazeSolver();
+        String pathSolution = mazeSolver.finalPath();
+
         StringBuilder solFinal = new StringBuilder();
 
         solFinal.append("F");

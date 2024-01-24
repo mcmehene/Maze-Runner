@@ -1,10 +1,10 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
-public class MazeSolver {
+public class MazeSolver implements Solver {
     private static String solution;
 
     // COMPUTATION METHODS: findStateCoordinates, findEndCoordinates, recursiveSolution
-    private static int findStartCoordinates(String[][] maze) {
+    public int findStartCoordinates(String[][] maze) {
 
         int start = 0;
         int rowStartCoordinate = 0;
@@ -24,7 +24,7 @@ public class MazeSolver {
         return rowStartCoordinate;
     }
 
-    private static int findEndCoordinates(String[][] maze) {
+    public int findEndCoordinates(String[][] maze) {
 
         int end = 0;
         int rowEndCoordinate = 0;
@@ -44,7 +44,7 @@ public class MazeSolver {
         return rowEndCoordinate;
     }
 
-    private static boolean recursiveSolution(String[][] mazeInput, int row, int column, int rowEnd) {
+    public boolean recursiveSolution(String[][] mazeInput, int row, int column, int rowEnd) {
 
         if (row == rowEnd && column == mazeInput[0].length - 1) {
 
@@ -85,9 +85,7 @@ public class MazeSolver {
 
         return false;
     }
-
-    public static String finalPath() {
-
+    public String finalPath() {
         MazeToGrid mazeToGrid = new MazeToGrid();
         String[][] maze = mazeToGrid.mazeArray();
 

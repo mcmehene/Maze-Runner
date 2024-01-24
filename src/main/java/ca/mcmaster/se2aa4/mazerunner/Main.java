@@ -15,8 +15,9 @@ public class Main {
             logger.info(UserPathCompare.userAnswer());
         } else {
 
-            logger.info("Full Path Solution: " + MazePrinter.cardinalToCanonical());
-            logger.info("Factored Path Solution: " + MazePrinter.canonicalToFactored());
+            MazePrinter mazePrinter = new MazePrinter();
+            logger.info("Full Path Solution: " + mazePrinter.cardinalToCanonical());
+            logger.info("Factored Path Solution: " + mazePrinter.canonicalToFactored());
         }
 
         // Le Fin.
