@@ -4,15 +4,12 @@ import org.apache.commons.cli.*;
 import org.apache.logging.log4j.*;
 
 public class Configuration {
-    private static String[] arguments;
+    //private static String[] arguments;
     private static String filepath;
     private static String userGuess;
-    public Configuration(String[] args) {
-        arguments = args;
-    }
     private static final Logger logger = LogManager.getLogger();
 
-    public boolean flagStatus() {
+    public static boolean flagStatus(String[] arguments) {
         // Read i flag and return its path if valid
         // Read p and return status of p to determine if we should evaluate maze
         // and print path or compute the users inputted path

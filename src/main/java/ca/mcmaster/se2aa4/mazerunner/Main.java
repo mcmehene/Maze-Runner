@@ -9,12 +9,8 @@ public class Main {
     public static void main(String[] args) {
         // Run configuration of flags.
         logger.info("********* Starting Maze Runner *********");
-
-        // Flag Processing
-        Configuration config = new Configuration(args);
-
         // Path Processing/Comparing Results
-        if (config.flagStatus()) {
+        if (Configuration.flagStatus(args)) {
             logger.info("User Input is " + UserPathResult.validInput());
         } else {
             logger.info("Full Path Solution: " + MazePrinter.cardinalToCanonical());
