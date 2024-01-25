@@ -9,24 +9,38 @@ public class UserPathResult {
         String userPath = config.userGuess();
 
         try {
-
+            logger.info(userPath);
             int onlyNumbers = 0;
+            int onlySpaces = 0;
+            boolean noLetters = false;
 
             if (userPath != null) {
 
                 for (int i = 0; i < userPath.length(); i++) {
 
                     if (userPath.charAt(i) != 'F' && userPath.charAt(i) != 'L'
-                            && userPath.charAt(i) != 'R' && !Character.isDigit(userPath.charAt(i))) {
+                            && userPath.charAt(i) != 'R' && userPath.charAt(i) != ' ' && !Character.isDigit(userPath.charAt(i))) {
 
                         return false;
                     }
 
-                    if ((userPath.charAt(i) != 'F' || userPath.charAt(i) != 'L'
-                            || userPath.charAt(i) != 'R') && Character.isDigit(userPath.charAt(i))) {
+                    if (userPath.charAt(i) == 'F' || userPath.charAt(i) == 'L'
+                            || userPath.charAt(i) == 'R') {
+
+                        noLetters = true;
+                    }
+
+                    /*if ((userPath.charAt(i) != 'F' || userPath.charAt(i) != 'L'
+                            || userPath.charAt(i) != 'R' || userPath.charAt(i) != ' ') && Character.isDigit(userPath.charAt(i))) {
 
                         onlyNumbers++;
                     }
+
+                    if ((userPath.charAt(i) != 'F' || userPath.charAt(i) != 'L'
+                            || userPath.charAt(i) != 'R' || !Character.isDigit(userPath.charAt(i)) && userPath.charAt(i) != ' ')) {
+
+                        onlySpaces++;
+                    }*/
 
                     if (Character.isDigit(userPath.charAt(userPath.length()-1))) {
 
@@ -34,7 +48,7 @@ public class UserPathResult {
                     }
                 }
 
-                return onlyNumbers != userPath.length();
+                return noLetters;
 
             }
 

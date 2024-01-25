@@ -48,7 +48,7 @@ public class MazeSolver implements SolverGenericMethods<Integer, String[][]> {
 
         if (row == rowEnd && column == mazeInput[0].length - 1) {
 
-            solution += "E";
+            //solution += "E";
             mazeInput[rowEnd][mazeInput[0].length - 1] = "*";
             return true;
         }
