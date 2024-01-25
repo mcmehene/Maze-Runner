@@ -10,7 +10,8 @@ public class Main {
         logger.info("********* Starting Maze Runner *********");
 
         // Path Processing/Comparing Results
-        if (Configuration.flagStatus(args)) {
+        Configuration config = new Configuration();
+        if (config.flagStatus(args)) {
 
             logger.info(UserPathCompare.userAnswer());
         } else {

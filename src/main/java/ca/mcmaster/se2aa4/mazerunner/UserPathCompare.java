@@ -6,10 +6,11 @@ import org.apache.logging.log4j.*;
 public class UserPathCompare {
     private static final Logger logger = LogManager.getLogger();
     public static String userAnswer() {
+        Configuration config = new Configuration();
+        UserPathResult result = new UserPathResult();
+        String userGuess = config.userGuess();
 
-        String userGuess = Configuration.userGuess();
-
-        if (UserPathResult.validInput()) {
+        if (result.validInput()) {
 
             int i = 0;
 

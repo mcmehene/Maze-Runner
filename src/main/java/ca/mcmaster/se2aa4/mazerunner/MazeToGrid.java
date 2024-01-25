@@ -12,10 +12,11 @@ public class MazeToGrid {
 
         int rows = 0;
         int columns = 0;
+        Configuration config = new Configuration();
 
         try {
 
-            BufferedReader reader = new BufferedReader(new FileReader(Configuration.filepath()));
+            BufferedReader reader = new BufferedReader(new FileReader(config.filepath()));
             String line;
 
             while ((line = reader.readLine()) != null) {
@@ -47,10 +48,11 @@ public class MazeToGrid {
         int rows = dimensions[0];
         int columns = dimensions[1];
         String[][] maze = new String[rows][columns];
+        Configuration config = new Configuration();
 
         try {
 
-            BufferedReader reader = new BufferedReader(new FileReader(Configuration.filepath()));
+            BufferedReader reader = new BufferedReader(new FileReader(config.filepath()));
             String line;
 
             for (int rowIndex = 0; rowIndex < rows; rowIndex++) {

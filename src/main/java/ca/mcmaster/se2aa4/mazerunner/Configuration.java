@@ -8,7 +8,7 @@ public class Configuration {
     private static String userGuess;
     private static final Logger logger = LogManager.getLogger();
 
-    public static boolean flagStatus(String[] arguments) {
+    public boolean flagStatus(String[] arguments) {
 
         Options options = new Options();
 
@@ -49,11 +49,9 @@ public class Configuration {
         return false;
     }
 
-    public static String filepath() {
+    public String filepath() {
         return filepath;
     }
 
-    public static String userGuess() {
-        return userGuess;
-    }
+    public String userGuess() { return userGuess; }
 }

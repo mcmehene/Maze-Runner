@@ -4,9 +4,9 @@ import org.apache.logging.log4j.*;
 
 public class UserPathResult {
     private static final Logger logger = LogManager.getLogger();
-    public static boolean validInput() {
-
-        String userPath = Configuration.userGuess();
+    public boolean validInput() {
+        Configuration config = new Configuration();
+        String userPath = config.userGuess();
 
         try {
 
