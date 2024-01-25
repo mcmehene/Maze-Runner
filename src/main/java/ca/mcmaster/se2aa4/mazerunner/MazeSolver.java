@@ -58,31 +58,30 @@ public class MazeSolver implements SolverGenericMethods<Integer, String[][]> {
 
             mazeInput[row][column] = "T";
             // SOUTH DIRECTION
-            if (recursiveSolution(mazeInput,row + 1, column, rowEnd)) {
+            if (recursiveSolution(mazeInput, row + 1, column, rowEnd)) {
 
                 solution += "S";
                 return true;
             }
             // EAST DIRECTION
-            if (recursiveSolution(mazeInput,row,column + 1, rowEnd)) {
+            if (recursiveSolution(mazeInput, row, column + 1, rowEnd)) {
 
                 solution += "E";
                 return true;
             }
             // WEST DIRECTION
-            if (recursiveSolution(mazeInput, row,column - 1, rowEnd)) {
+            if (recursiveSolution(mazeInput, row, column - 1, rowEnd)) {
 
                 solution += "W";
                 return true;
             }
             // NORTH DIRECTION
-            if (recursiveSolution(mazeInput,row - 1, column, rowEnd)) {
+            if (recursiveSolution(mazeInput, row - 1, column, rowEnd)) {
 
                 solution += "N";
                 return true;
             }
         }
-
         return false;
     }
     public String finalPath() {
