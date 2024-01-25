@@ -17,8 +17,8 @@ public class Main {
         } else {
 
             MazePrinter mazePrinter = new MazePrinter();
-            logger.info("Full Path Solution: " + mazePrinter.cardinalToCanonical());
-            logger.info("Factored Path Solution: " + mazePrinter.canonicalToFactored());
+            logger.info("Full Path Solution: " + mazePrinter.fullPath());
+            logger.info("Factored Path Solution: " + mazePrinter.factored());
         }
 
         // Le Fin.

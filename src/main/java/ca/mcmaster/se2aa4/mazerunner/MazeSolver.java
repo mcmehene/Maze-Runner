@@ -87,7 +87,7 @@ public class MazeSolver {
     }
     public String finalPath() {
         MazeToGrid mazeToGrid = new MazeToGrid();
-        String[][] maze = mazeToGrid.mazeArray();
+        String[][] maze = mazeToGrid.mazeCreator();
 
         solution = "";
 

@@ -5,7 +5,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.Objects;
 
-public class MazeToGrid {
+public class MazeToGrid implements MazeCreator<String[][]> {
     private static final Logger logger = LogManager.getLogger();
 
     private static int[] dimensions() {
@@ -42,7 +42,7 @@ public class MazeToGrid {
     }
 
     // Maze Array Converts the Maze into a Matrix for Program.
-    public String[][] mazeArray() {
+    public String[][] mazeCreator() {
 
         int[] dimensions = dimensions();
         int rows = dimensions[0];

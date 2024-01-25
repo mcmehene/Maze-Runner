@@ -1,15 +1,15 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
 // CLASS: PRINT PATHS & MAZES
-public class MazePrinter {
+public class MazePrinter implements PrinterBusinessSpecGeneric {
 
     // PRINTING METHODS: cardinalToCanonical, canonicalToFactored
-    public String cardinalToCanonical() {
+    public String fullPath() {
 
         return pathCalculation();
     }
 
-    public String canonicalToFactored() {
+    public String factored() {
 
         String solution = pathCalculation();
         int amountF = 0;

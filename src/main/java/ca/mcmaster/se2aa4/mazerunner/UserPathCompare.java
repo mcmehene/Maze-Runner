@@ -37,7 +37,7 @@ public class UserPathCompare {
 
     private static String factoredCalculation(String userGuess) {
         MazePrinter mazePrinter = new MazePrinter();
-        String factored = removeSpaces(mazePrinter.canonicalToFactored());
+        String factored = removeSpaces(mazePrinter.factored());
 
         if (factored.equals(userGuess)) {
 
@@ -49,7 +49,7 @@ public class UserPathCompare {
 
     private static String canonicalCalculation(String userGuess) {
         MazePrinter mazePrinter = new MazePrinter();
-        String canonical = removeSpaces(mazePrinter.cardinalToCanonical());
+        String canonical = removeSpaces(mazePrinter.fullPath());
 
         if (canonical.equals(userGuess)) {
 
