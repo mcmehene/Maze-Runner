@@ -43,29 +43,41 @@ public class WestToEastCheck implements SolverWTEGenericMethods<Integer, String[
     }
 
     public boolean westPathValidation(String[][] maze, String cardinalPath) {
+
         int row = findWestStartCoordinate(maze);
         int endRow = findWestEndCoordinate(maze);
         int column = 0;
+
         for (int f = 0; f < cardinalPath.length(); f++) {
+
             if ((row < 0 || row >= maze.length) || (column < 0 || column >= maze[0].length) || maze[row][column].equals("#")) {
+
                 return false;
             }
+
             if (cardinalPath.charAt(f) == 'E') {
+
                 column++;
             } else if (cardinalPath.charAt(f) == 'S') {
+
                 row++;
             } else if (cardinalPath.charAt(f) == 'N') {
+
                 row--;
             } else if (cardinalPath.charAt(f) == 'W') {
+
                 column--;
             }
         }
+
         return row == endRow && column == maze.length-1;
     }
 
     public boolean westCheck() {
+
         MazeToGrid mazeToGrid = new MazeToGrid();
         UserPathToCardinal cardinal = new UserPathToCardinal();
+
         return westPathValidation(mazeToGrid.mazeCreator(), cardinal.westToEast());
     }
 }

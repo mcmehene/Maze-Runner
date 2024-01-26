@@ -47,6 +47,7 @@ public class MazeToGrid implements MazeCreator<String[][]> {
         int[] dimensions = dimensions();
         int rows = dimensions[0];
         int columns = dimensions[1];
+
         String[][] maze = new String[rows][columns];
         Configuration config = new Configuration();
 
@@ -76,6 +77,7 @@ public class MazeToGrid implements MazeCreator<String[][]> {
                             maze[rowIndex][idx] = " ";
                         }
                     }
+
                 // ...otherwise we must add the missing spaces, so we respect matrix bounds.
                 } else {
 

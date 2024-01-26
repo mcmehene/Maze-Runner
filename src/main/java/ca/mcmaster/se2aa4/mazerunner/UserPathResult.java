@@ -5,11 +5,12 @@ import org.apache.logging.log4j.*;
 public class UserPathResult {
     private static final Logger logger = LogManager.getLogger();
     public boolean validInput() {
+
         Configuration config = new Configuration();
         String userPath = config.userGuess();
 
         try {
-            logger.info(userPath);
+
             boolean noLetters = false;
 
             if (userPath != null) {

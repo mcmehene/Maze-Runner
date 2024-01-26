@@ -56,24 +56,28 @@ public class MazeSolver /*implements SolverWTEGenericMethods<Integer, String[][]
         if ((row >= 0 && row < mazeInput.length) && (column >= 0 && column < mazeInput[0].length) && mazeInput[row][column].equals(" ")) {
 
             mazeInput[row][column] = "T";
+
             // SOUTH DIRECTION
             if (recursiveSolution(mazeInput, row + 1, column, rowEnd)) {
 
                 solution += "S";
                 return true;
             }
+
             // EAST DIRECTION
             if (recursiveSolution(mazeInput, row, column + 1, rowEnd)) {
 
                 solution += "E";
                 return true;
             }
+
             // WEST DIRECTION
             if (recursiveSolution(mazeInput, row, column - 1, rowEnd)) {
 
                 solution += "W";
                 return true;
             }
+
             // NORTH DIRECTION
             if (recursiveSolution(mazeInput, row - 1, column, rowEnd)) {
 
@@ -81,12 +85,15 @@ public class MazeSolver /*implements SolverWTEGenericMethods<Integer, String[][]
                 return true;
             }
         }
+
         return false;
     }
     public String finalPath() {
+
         MazeToGrid mazeToGrid = new MazeToGrid();
         String[][] maze = mazeToGrid.mazeCreator();
 
+        // Reinitialize to empty when finalPath gets called again.
         solution = "";
 
         recursiveSolution(maze, findWestStartCoordinate(maze),0, findWestEndCoordinate(maze));

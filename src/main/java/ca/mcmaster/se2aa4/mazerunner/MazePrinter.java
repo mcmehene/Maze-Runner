@@ -26,8 +26,10 @@ public class MazePrinter implements PrinterBusinessSpecGeneric {
 
                     factored.append(amountF).append("F").append(" ");
                 } else if (amountF == 1) {
+
                     factored.append("F").append(" ");
                 }
+
                 amountF = 0;
                 factored.append("L").append(" ");
 
@@ -37,8 +39,10 @@ public class MazePrinter implements PrinterBusinessSpecGeneric {
 
                     factored.append(amountF).append("F").append(" ");
                 } else if (amountF == 1) {
+
                     factored.append("F").append(" ");
                 }
+
                 amountF = 0;
                 factored.append("R").append(" ");
 
@@ -49,6 +53,7 @@ public class MazePrinter implements PrinterBusinessSpecGeneric {
 
             factored.append(amountF).append("F").append(" ");
         } else if (amountF == 1) {
+
             factored.append("F").append(" ");
         }
 
