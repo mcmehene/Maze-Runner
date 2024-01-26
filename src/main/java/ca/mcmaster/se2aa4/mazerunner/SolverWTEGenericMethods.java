@@ -1,6 +1,7 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
-public interface SolverGenericMethods <T, K> {
+
+public interface SolverWTEGenericMethods<T, K> {
 
     // 1. rowStartCoordinates is meant to return the start coordinate of the row.
     // 2. No matter the maze inputted, none of our files contains dimensions or information
@@ -8,7 +9,7 @@ public interface SolverGenericMethods <T, K> {
     //    the starting coordinate data in whatever type they prefer.
     // 3. As designed in the MazeCreator interface, the type of how the maze is saved is
     //    also personalized to the developer, and so I have reflected that here for the maze input.
-    T findStartCoordinate(K mazeInput);
+    T findWestStartCoordinate(K mazeInput);
 
     // 1. rowEndCoordinate is meant to return the start coordinate of the row.
     // 2. No matter the maze inputted, none of our files contains dimensions or information
@@ -16,5 +17,5 @@ public interface SolverGenericMethods <T, K> {
     //    the ending coordinate data in whatever type they prefer.
     // 3. As designed in the MazeCreator interface, the type of how the maze is saved is
     //    also personalized to the developer, and so I have reflected that here for the maze input.
-    T findEndCoordinate(K mazeInput);
+    T findWestEndCoordinate(K mazeInput);
 }

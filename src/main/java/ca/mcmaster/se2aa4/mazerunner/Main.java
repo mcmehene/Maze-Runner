@@ -12,7 +12,6 @@ public class Main {
         // Path Processing/Comparing Results
         Configuration config = new Configuration();
         if (config.flagStatus(args)) {
-
             logger.info(UserPathCompare.userAnswer());
         } else {
 
@@ -21,6 +20,7 @@ public class Main {
             logger.info("Factored Path Solution: " + mazePrinter.factored());
         }
 
+        logger.info("Simplified " + UserPathToCardinal.eastToWest());
         // Le Fin.
         logger.info("********** End of Maze Runner **********");
     }

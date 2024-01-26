@@ -10,8 +10,6 @@ public class UserPathResult {
 
         try {
             logger.info(userPath);
-            int onlyNumbers = 0;
-            int onlySpaces = 0;
             boolean noLetters = false;
 
             if (userPath != null) {
@@ -29,18 +27,6 @@ public class UserPathResult {
 
                         noLetters = true;
                     }
-
-                    /*if ((userPath.charAt(i) != 'F' || userPath.charAt(i) != 'L'
-                            || userPath.charAt(i) != 'R' || userPath.charAt(i) != ' ') && Character.isDigit(userPath.charAt(i))) {
-
-                        onlyNumbers++;
-                    }
-
-                    if ((userPath.charAt(i) != 'F' || userPath.charAt(i) != 'L'
-                            || userPath.charAt(i) != 'R' || !Character.isDigit(userPath.charAt(i)) && userPath.charAt(i) != ' ')) {
-
-                        onlySpaces++;
-                    }*/
 
                     if (Character.isDigit(userPath.charAt(userPath.length()-1))) {
 
