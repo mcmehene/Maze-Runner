@@ -5,14 +5,21 @@ import org.apache.logging.log4j.*;
 // COMPARE CORRECTNESS OF USER PATH TO COMPUTED
 public class UserPathCompare {
     private static final Logger logger = LogManager.getLogger();
-    public static String userAnswer() {
-        Configuration config = new Configuration();
+    public String userAnswer() {
+        //Configuration config = new Configuration();
         UserPathResult result = new UserPathResult();
-        String userGuess = config.userGuess();
+        EastToWestCheck eastCheck = new EastToWestCheck();
+        WestToEastCheck westCheck = new WestToEastCheck();
+        //String userGuess = config.userGuess();
 
         if (result.validInput()) {
 
-            int i = 0;
+            if (westCheck.westCheck() || eastCheck.eastCheck()) {
+                return "Correct Path";
+            } else {
+                return "Incorrect Path";
+            }
+            /*int i = 0;
 
             while (i < userGuess.length()) {
 
@@ -24,7 +31,7 @@ public class UserPathCompare {
                 i++;
             }
 
-            return canonicalCalculation(userGuess);
+            return canonicalCalculation(userGuess);*/
 
         } else {
 
@@ -35,7 +42,7 @@ public class UserPathCompare {
         }
     }
 
-    private static String factoredCalculation(String userGuess) {
+    private String factoredCalculation(String userGuess) {
         MazePrinter mazePrinter = new MazePrinter();
         String factored = removeSpaces(mazePrinter.factored());
 
@@ -47,7 +54,7 @@ public class UserPathCompare {
         return "Incorrect Path";
     }
 
-    private static String canonicalCalculation(String userGuess) {
+    private String canonicalCalculation(String userGuess) {
         MazePrinter mazePrinter = new MazePrinter();
         String canonical = removeSpaces(mazePrinter.fullPath());
 
@@ -59,7 +66,7 @@ public class UserPathCompare {
         return "Incorrect Path";
     }
 
-    private static String removeSpaces(String spaces) {
+    private String removeSpaces(String spaces) {
 
         return spaces.replaceAll(" ", "");
     }

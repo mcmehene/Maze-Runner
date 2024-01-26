@@ -10,7 +10,7 @@ public class UserPathToCardinal {
     // 3. Convert to Cardinal directions. The cardinal directions string path will be
     //    actually used to move through the maze.
 
-    private static String factored(String userPath) {
+    private String factored(String userPath) {
 
         //Configuration config = new Configuration();
         String noSpacesString = removeSpaces(userPath);
@@ -117,7 +117,7 @@ public class UserPathToCardinal {
         return factoredFinal.toString();
     }
 
-    private static String simplified(String factored) {
+    private String simplified(String factored) {
         StringBuilder simplified = new StringBuilder();
         StringBuilder saveNumber = new StringBuilder();
         for (int i = 0; i < factored.length(); i++) {
@@ -165,7 +165,7 @@ public class UserPathToCardinal {
         return simplified.toString();
     }
 
-    public static String westToEast() {
+    public String westToEast() {
         Configuration config = new Configuration();
         String noSpacesString = removeSpaces(config.userGuess());
         String factored = factored(noSpacesString);
@@ -191,7 +191,7 @@ public class UserPathToCardinal {
         return cardinalConversions(simplified, westToEast, turn);
     }
 
-    public static String eastToWest() {
+    public String eastToWest() {
         Configuration config = new Configuration();
         String noSpacesString = removeSpaces(config.userGuess());
         String factored = factored(noSpacesString);
@@ -217,7 +217,7 @@ public class UserPathToCardinal {
         return cardinalConversions(simplified, eastToWest, turn);
     }
 
-    private static String cardinalConversions(String simplified, StringBuilder answer, String turn) {
+    private String cardinalConversions(String simplified, StringBuilder answer, String turn) {
         for (int k = 1; k < simplified.length(); k++) {
             if (simplified.charAt(k) == 'F' && turn.equals("EAST")) {
                 answer.append("E");
@@ -271,7 +271,7 @@ public class UserPathToCardinal {
         return answer.toString();
     }
 
-    private static String removeSpaces(String userPath) {
+    private String removeSpaces(String userPath) {
 
         return userPath.replaceAll(" ", "");
     }

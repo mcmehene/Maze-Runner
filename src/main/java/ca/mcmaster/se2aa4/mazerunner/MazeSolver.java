@@ -1,6 +1,6 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
-public class MazeSolver implements SolverWTEGenericMethods<Integer, String[][]> {
+public class MazeSolver /*implements SolverWTEGenericMethods<Integer, String[][]>*/ {
     private static String solution;
 
     // COMPUTATION METHODS: findStateCoordinates, findEndCoordinates, recursiveSolution
