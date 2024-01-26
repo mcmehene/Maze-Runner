@@ -20,7 +20,8 @@ public class Main {
             logger.info("Factored Path Solution: " + mazePrinter.factored());
         }
 
-        logger.info("Simplified " + UserPathToCardinal.eastToWest());
+        logger.info("West To East " + UserPathToCardinal.westToEast());
+        logger.info("East To West " + UserPathToCardinal.eastToWest());
         // Le Fin.
         logger.info("********** End of Maze Runner **********");
     }

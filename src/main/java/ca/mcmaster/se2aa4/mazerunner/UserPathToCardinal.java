@@ -80,12 +80,7 @@ public class UserPathToCardinal {
                 } else {
 
                     // Has to be a digit due to validity, so already factored, so we move onto next character.
-                    if (numberR == 0 && numberL == 0 && numberF == 0) {
-
-                        factoredFinal.append(noSpacesString.charAt(i)).append(noSpacesString.charAt(i + 1));
-                        i++;
-
-                    } else {
+                    if (numberR != 0 || numberL != 0 || numberF != 0) {
 
                         if (numberR != 0) {
                             factoredFinal.append(numberR).append("R");
@@ -100,15 +95,11 @@ public class UserPathToCardinal {
                             numberL = 0;
                         }
 
-                        factoredFinal.append(noSpacesString.charAt(i)).append(noSpacesString.charAt(i + 1));
-                        i++;
                     }
+                    factoredFinal.append(noSpacesString.charAt(i)).append(noSpacesString.charAt(i + 1));
+                    i++;
                 }
             }
-
-            // For Debugging:
-            //System.out.println("CHAR AT I " + noSpacesString.charAt(i));
-            //System.out.println("I " + i);
         }
 
         if (numberR != 0) {
@@ -174,24 +165,110 @@ public class UserPathToCardinal {
         return simplified.toString();
     }
 
+    public static String westToEast() {
+        Configuration config = new Configuration();
+        String noSpacesString = removeSpaces(config.userGuess());
+        String factored = factored(noSpacesString);
+        String simplified = simplified(factored);
+
+        StringBuilder westToEast = new StringBuilder();
+        String turn = "";
+        // Initial Character Settings
+        if (simplified.charAt(0) == 'F') {
+            westToEast.append("E");
+            turn = "EAST";
+        } else if (simplified.charAt(0) == 'R') {
+            westToEast.append("S");
+            turn = "SOUTH";
+        } else if (simplified.charAt(0) == 'L') {
+            turn = "NORTH";
+            westToEast.append("N");
+        }  else if (simplified.charAt(0) == 'O'){
+            turn = "WEST";
+            westToEast.append("W");
+        }
+
+        return cardinalConversions(simplified, westToEast, turn);
+    }
+
     public static String eastToWest() {
         Configuration config = new Configuration();
         String noSpacesString = removeSpaces(config.userGuess());
         String factored = factored(noSpacesString);
         String simplified = simplified(factored);
 
-        String eastToWest = "";
-
-        for (int k = 0; k < simplified.length(); k++) {
-
+        StringBuilder eastToWest = new StringBuilder();
+        // Convert the path into a west to east implementation. For WestToEastCheck.
+        // Initial Character Settings
+        String turn = "";
+        if (simplified.charAt(0) == 'F') {
+            eastToWest.append("W");
+            turn = "WEST";
+        } else if (simplified.charAt(0) == 'R') {
+            eastToWest.append("N");
+            turn = "NORTH";
+        } else if (simplified.charAt(0) == 'L') {
+            eastToWest.append("S");
+            turn = "SOUTH";
+        } else if (simplified.charAt(0) == 'O'){
+            eastToWest.append("E");
+            turn = "EAST";
         }
-        // Convert the path into an east to west implementation. For EastToWestCheck.
-        return "";
+        return cardinalConversions(simplified, eastToWest, turn);
     }
 
-    public String westToEast() {
-        // Convert the path into a west to east implementation. For WestToEastCheck.
-        return "";
+    private static String cardinalConversions(String simplified, StringBuilder answer, String turn) {
+        for (int k = 1; k < simplified.length(); k++) {
+            if (simplified.charAt(k) == 'F' && turn.equals("EAST")) {
+                answer.append("E");
+            } else if (simplified.charAt(k) == 'F' && turn.equals("SOUTH")) {
+                answer.append("S");
+            } else if (simplified.charAt(k) == 'F' && turn.equals("NORTH")) {
+                answer.append("N");
+            } else if (simplified.charAt(k) == 'F' && turn.equals("WEST")) {
+                answer.append("W");
+            }
+            if (simplified.charAt(k) == 'R' && turn.equals("EAST")) {
+                turn = "SOUTH";
+                //eastToWest.append("S");
+            } else if (simplified.charAt(k) == 'R' && turn.equals("SOUTH")) {
+                turn = "WEST";
+                //eastToWest.append("W");
+            } else if (simplified.charAt(k) == 'R' && turn.equals("NORTH")) {
+                turn = "EAST";
+                //eastToWest.append("E");
+            } else if (simplified.charAt(k) == 'R' && turn.equals("WEST")) {
+                turn = "NORTH";
+                //eastToWest.append("N");
+            }
+            if (simplified.charAt(k) == 'L' && turn.equals("EAST")) {
+                turn = "NORTH";
+                //eastToWest.append("N");
+            } else if (simplified.charAt(k) == 'L' && turn.equals("SOUTH")) {
+                turn = "EAST";
+                //eastToWest.append("E");
+            } else if (simplified.charAt(k) == 'L' && turn.equals("NORTH")) {
+                turn = "WEST";
+                //eastToWest.append("W");
+            } else if (simplified.charAt(k) == 'L' && turn.equals("WEST")) {
+                turn = "SOUTH";
+                //eastToWest.append("S");
+            }
+            if (simplified.charAt(k) == 'O' && turn.equals("EAST")) {
+                turn = "WEST";
+                //eastToWest.append("W");
+            } else if (simplified.charAt(k) == 'O' && turn.equals("SOUTH")) {
+                turn = "NORTH";
+                //eastToWest.append("N");
+            } else if (simplified.charAt(k) == 'O' && turn.equals("NORTH")) {
+                turn = "SOUTH";
+                //eastToWest.append("S");
+            } else if (simplified.charAt(k) == 'O' && turn.equals("WEST")) {
+                turn = "EAST";
+                //eastToWest.append("E");
+            }
+        }
+        return answer.toString();
     }
 
     private static String removeSpaces(String userPath) {
