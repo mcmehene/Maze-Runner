@@ -10,7 +10,7 @@ public class UserPathToCardinal {
     // 3. Convert to Cardinal directions. The cardinal directions string path will be
     //    actually used to move through the maze.
 
-    public String factored(String userPath) {
+    private String factored(String userPath) {
 
         String noSpacesString = removeSpaces(userPath);
 
