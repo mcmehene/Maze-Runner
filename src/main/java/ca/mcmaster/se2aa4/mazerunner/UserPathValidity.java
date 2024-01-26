@@ -2,7 +2,7 @@ package ca.mcmaster.se2aa4.mazerunner;
 
 import org.apache.logging.log4j.*;
 
-public class UserPathResult {
+public class UserPathValidity {
     private static final Logger logger = LogManager.getLogger();
     public boolean validInput() {
 

@@ -7,13 +7,12 @@ public class UserPathCompare {
     private static final Logger logger = LogManager.getLogger();
     public String userAnswer() {
 
-        UserPathResult result = new UserPathResult();
-        EastToWestCheck eastCheck = new EastToWestCheck();
-        WestToEastCheck westCheck = new WestToEastCheck();
+        UserPathValidity result = new UserPathValidity();
+        UserPathCheck pathCheck = new UserPathCheck();
 
         if (result.validInput()) {
 
-            if (westCheck.westCheck() || eastCheck.eastCheck()) {
+            if (pathCheck.check()) {
 
                 return "Correct Path";
             } else {

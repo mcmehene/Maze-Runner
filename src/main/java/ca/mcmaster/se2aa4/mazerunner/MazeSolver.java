@@ -1,48 +1,7 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
-public class MazeSolver /*implements SolverWTEGenericMethods<Integer, String[][]>*/ {
+public class MazeSolver {
     private static String solution;
-
-    // COMPUTATION METHODS: findStateCoordinates, findEndCoordinates, recursiveSolution
-    public Integer findWestStartCoordinate(String[][] maze) {
-
-        int start = 0;
-        int rowStartCoordinate = 0;
-        boolean coordinateNotFound = true;
-
-        while (coordinateNotFound) {
-
-            if (maze[start][0].equals(" ")) {
-
-                rowStartCoordinate = start;
-                coordinateNotFound = false;
-            }
-
-            start++;
-        }
-
-        return rowStartCoordinate;
-    }
-
-    public Integer findWestEndCoordinate(String[][] maze) {
-
-        int end = 0;
-        int rowEndCoordinate = 0;
-        boolean coordinateNotFound = true;
-
-        while (coordinateNotFound) {
-
-            if (maze[end][maze[0].length - 1].equals(" ")) {
-
-                rowEndCoordinate = end;
-                coordinateNotFound = false;
-            }
-
-            end++;
-        }
-
-        return rowEndCoordinate;
-    }
 
     public boolean recursiveSolution(String[][] mazeInput, int row, int column, int rowEnd) {
 
@@ -92,11 +51,12 @@ public class MazeSolver /*implements SolverWTEGenericMethods<Integer, String[][]
 
         MazeToGrid mazeToGrid = new MazeToGrid();
         String[][] maze = mazeToGrid.mazeCreator();
+        Coordinates coordinates = new Coordinates();
 
         // Reinitialize to empty when finalPath gets called again.
         solution = "";
 
-        recursiveSolution(maze, findWestStartCoordinate(maze),0, findWestEndCoordinate(maze));
+        recursiveSolution(maze, coordinates.findLeftCoordinate(maze),0, coordinates.findRightCoordinate(maze));
 
         return solution;
     }

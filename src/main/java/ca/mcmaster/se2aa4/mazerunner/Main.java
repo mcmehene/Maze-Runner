@@ -19,7 +19,7 @@ public class Main {
         } else {
 
             MazePrinter mazePrinter = new MazePrinter();
-            logger.info("Full Path Solution: " + mazePrinter.fullPath());
+            logger.info("Full Path Solution: " + mazePrinter.pathCalculation());
             logger.info("Factored Path Solution: " + mazePrinter.factored());
         }
 
