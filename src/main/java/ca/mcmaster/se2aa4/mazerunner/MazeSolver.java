@@ -22,6 +22,7 @@ public class MazeSolver implements SolverGeneric<Boolean, String[][], Integer> {
             if (solution(mazeInput, row + 1, column, rowEnd)) {
 
                 solution += "S";
+                mazeInput[row][column] = "*";
                 return true;
             }
 
@@ -29,13 +30,7 @@ public class MazeSolver implements SolverGeneric<Boolean, String[][], Integer> {
             if (solution(mazeInput, row, column + 1, rowEnd)) {
 
                 solution += "E";
-                return true;
-            }
-
-            // WEST DIRECTION
-            if (solution(mazeInput, row, column - 1, rowEnd)) {
-
-                solution += "W";
+                mazeInput[row][column] = "*";
                 return true;
             }
 
@@ -43,6 +38,15 @@ public class MazeSolver implements SolverGeneric<Boolean, String[][], Integer> {
             if (solution(mazeInput, row - 1, column, rowEnd)) {
 
                 solution += "N";
+                mazeInput[row][column] = "*";
+                return true;
+            }
+
+            // WEST DIRECTION
+            if (solution(mazeInput, row, column - 1, rowEnd)) {
+
+                solution += "W";
+                mazeInput[row][column] = "*";
                 return true;
             }
         }
@@ -62,4 +66,5 @@ public class MazeSolver implements SolverGeneric<Boolean, String[][], Integer> {
 
         return solution;
     }
+
 }
